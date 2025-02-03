@@ -74,27 +74,6 @@ animate(gifperhead, height = 1000, width = 1000)
 
 ################################################################################
 # Slide 9 graph
-# Faceted area graph of percentage share of annual expenditure across categories
-
-percentagelong %>% 
-  filter(X.1 != "Total" & X.1 == X.2) %>%
-  mutate(X.1 = fct_reorder(X.1, desc(expenditure))) %>%
-  ggplot(mapping = aes(x = year, y = expenditure, fill = X.1)) +
-  geom_area(alpha = 0.7, fill = "dodgerblue") +
-  theme_minimal() +
-  theme(
-    legend.position = "none",
-    panel.spacing = unit(0.1, "lines"),
-    text = element_text(size = 14)) +
-  ggtitle("Percentage of NHS Wales Expenditure across Categories from 2013-14 to 2022-23") +
-  xlab("Financial Year Beginning") +
-  ylab("% of Annual Total Expenditure") +
-  scale_x_discrete(limits=c(2013, 2015, 2017, 2019, 2021)) +
-  facet_wrap(~X.1, ncol = 4)
-
-
-################################################################################
-# Slide 10 graph
 # Faceted area graph of annual expenditure across categories
 
 datalong %>% filter(X.1 != "Total" & X.1 == X.2 & year >= 2013) %>%
@@ -116,7 +95,7 @@ datalong %>% filter(X.1 != "Total" & X.1 == X.2 & year >= 2013) %>%
   
 
 ################################################################################
-# Slide 11 graph
+# Slide 10 graph
 # Ten year percentage change in spending across categories 
 
 # Filter data for totals in 2013 and 2022
@@ -174,6 +153,27 @@ oneyearchange %>%
   theme_bw() +
   ggtitle("Percentage Change in Expenditure from 2021-22 to 2022-23") +
   theme(text = element_text(size = 14))
+
+
+################################################################################
+# Slide 12 graph
+# Faceted area graph of percentage share of annual expenditure across categories
+
+percentagelong %>% 
+  filter(X.1 != "Total" & X.1 == X.2) %>%
+  mutate(X.1 = fct_reorder(X.1, desc(expenditure))) %>%
+  ggplot(mapping = aes(x = year, y = expenditure, fill = X.1)) +
+  geom_area(alpha = 0.7, fill = "dodgerblue") +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    panel.spacing = unit(0.1, "lines"),
+    text = element_text(size = 14)) +
+  ggtitle("Percentage of NHS Wales Expenditure across Categories from 2013-14 to 2022-23") +
+  xlab("Financial Year Beginning") +
+  ylab("% of Annual Total Expenditure") +
+  scale_x_discrete(limits=c(2013, 2015, 2017, 2019, 2021)) +
+  facet_wrap(~X.1, ncol = 4)
 
 
 ################################################################################
